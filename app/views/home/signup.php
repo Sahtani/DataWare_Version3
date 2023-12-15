@@ -5,7 +5,7 @@
     <img class="md:m-auto md:ml-4" src="<?= BASE_URL_ASSETS ?>img/undraw_engineering_team_a7n2.svg" alt="signup">
     <div class="flex flex-col items-center   md:w-full mt-10  ">
         <h1 class="text-2xl font-bold  text-center mt-3">Sign up</h1>
-        <form action="./user/Usersignup" method="post" class="flex flex-col mt-4 gap-4 w-full">
+        <form action="./Usersignup" method="post" class="flex flex-col mt-4 gap-4 w-full">
             <div class="mx-4">
                 <input class="border-2 border-dark px-2 py-2   w-full  " type="text" id="fisrtname" name="firstname" required placeholder="First Name">
             </div>

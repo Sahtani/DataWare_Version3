@@ -3,7 +3,7 @@ class UserController extends Controller
 {
     public function index($error = "")
     {
-        $this->view("home/signup", "", ["error" => $error]);
+        $this->view("home/home", "", ["error" => $error]);
         $this->view->render();
     }
     public function log_in($error = "")
@@ -11,6 +11,12 @@ class UserController extends Controller
         $this->view("home/login", "", ["error" => $error]);
         $this->view->render();
     }
+    public function sign_up($error = "")
+    {
+        $this->view("home/signup", "", ["error" => $error]);
+        $this->view->render();
+    }
+
 
     public function Usersignup()
     {
@@ -65,8 +71,6 @@ class UserController extends Controller
             default:
                 break;
         }
-        // die($pattern);
-        // Validate and sanitize the data
         if (isset($data) && !empty($data)) {
             $data = trim($data);
             $data = stripslashes($data);
@@ -90,14 +94,17 @@ class UserController extends Controller
             $this->model("persone");
             $user = $this->model->logIn($data);
             if ($user !== null && $data["email"] === $user["email"] && password_Verify($data["password"], $user["password"])) {
-                $_SESSION['data'] = $data;
+                $_SESSION['data'] = $user;
                 $_SESSION['authorize'] = true;
             } else {
                 $this->log_in("this account does not exist.");
                 exit;
             }
-            // if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 1) {
-            //     header('location:./ProductOwner/projet.php');
+            if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 1) {
+                redirect("Productowner/project");
+            }else{
+
+            }
             // } else if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 2) {
             //     header('location:./ScrumMaster/projet.php');
             // } else if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 3) {
@@ -109,4 +116,5 @@ class UserController extends Controller
             header("Location: http://localhost/DataWare_Version3//public/home/");
         }
     }
+
 }
