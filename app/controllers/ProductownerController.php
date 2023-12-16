@@ -1,7 +1,6 @@
 <?php
 class ProductownerController extends Controller
 {
-
     // project
     public function index($error = "")
     {

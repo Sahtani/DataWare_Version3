@@ -20,7 +20,6 @@ class UserController extends Controller
 
     public function Usersignup()
     {
-
         if (isset($_POST["submit"])) {
 
             $firstname = $_POST["firstname"];
@@ -36,22 +35,15 @@ class UserController extends Controller
             );
 
             $this->model("persone");
-
             $existed_Persone = $this->model->validatePersone($data["email"]);
-            // 
-            //    die("test");
+
             if ($existed_Persone) {
-
-
-                $this->index("This Email Already Exist!");
+                $this->sign_up("This Email Already Exist!");
                 exit;
-            }
+            }else $this->sign_up("Sign-up successful!");
 
             // Sign up the user
             $this->model->Signup($data);
-
-            // Redirect to a home page or another appropriate location
-            // redirect("home/home");
 
         }
     }

@@ -39,8 +39,6 @@ class Productowner extends Persone
             return $e->getMessage();
         }
     }
-    public function addproject(){
-        
-    }
+   
 
 }
