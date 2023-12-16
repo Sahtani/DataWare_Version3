@@ -1,3 +1,8 @@
+<?php
+$project = $this->view_data["project"];
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -5,9 +10,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="title" content="Team and project management for DataWare">
     <meta name="keywords" content="team, project, Members, team management, project management">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,7 +54,7 @@
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
                     <a href="index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
@@ -69,24 +74,23 @@
             </ul>
         </div>
         <div class="w-3/6 m-auto">
-            <form action="./Add_project" class=" m-auto bg-blueText2 w-full md:w-4/6 rounded-lg" method="post">
+            <form class=" m-auto bg-blueText2 w-full md:w-4/6 rounded-lg" method="post" action="../update_project">
+                <input type="hidden" name="id" value='<?= $project['idproject'] ?>'>
                 <div class="mb-5 mx-4">
-                    <label class="block p-4 text-sm font-medium  dark:text-white">Project name :</label>
-                    <input type="name" id="name" name="nameprojet" class="bg-white  border border-dark text-gray-500 text-sm rounded-lg w-full  p-2.5  " placeholder="project name" required>
+                    <label class="block p-4 text-sm font-medium  dark:text-white">Project name </label>
+                    <input type="name" id="name" name="nameprojet" class="bg-white  border border-dark text-gray-500 text-sm rounded-lg w-full  p-2.5  " value='<?= $project["name"] ?> ' required>
                 </div>
                 <div class="mb-5 mx-4">
-                    <label class="block block px-2 pb-2 text-sm font-medium  dark:text-white">Start_date:</label>
-                    <input type="date" id="date" name="startdate" class="bg-white border border-dark text-sm rounded-lg w-full  p-2.5 text-gray-500 " placeholder="mm-dd-yyyy" required>
+                    <label class="block block px-2 pb-2 text-sm font-medium  dark:text-white">Start date </label>
+                    <input id="date" name="startdate" class="bg-white border border-dark text-sm rounded-lg w-full  p-2.5 text-gray-500 " required value='<?= $project["start_date"] ?>'>
                 </div>
                 <div class="mb-5 mx-4">
-                    <label class="block px-2 pb-2 text-sm font-medium  dark:text-white">End_date:</label>
-                    <input type="date" id="date" name="enddate" class="bg-white border border-dark  text-sm rounded-lg w-full  p-2.5 text-gray-500 " placeholder="mm-dd-yyyy" required>
+                    <label class="block px-2 pb-2 text-sm font-medium  dark:text-white"> End date </label>
+                    <input id="date" name="enddate" class="bg-white border border-dark  text-sm rounded-lg w-full  p-2.5 text-gray-500 " required value='<?= $project["end_date"] ?> '>
                 </div>
                 <div class="mx-4">
                     <button type="submit" name="submit" class="text-white bg-dark hover:bg-blue-700 font-medium rounded-lg text-sm w-full mb-4  py-2.5 text-center">Submit</button>
-                    <p class="text-dark text-center pb-4"><?php
-                                                            echo $this->view_data["error"];
-                                                            ?></p>
+                    <p class="text-dark text-center pb-4"><?php echo $this->view_data["error"]?></p>
                 </div>
             </form>
         </div>

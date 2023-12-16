@@ -7,6 +7,7 @@ class Persone
         protected string $email;
         protected string $password;
         protected int $rold;
+        protected $data;
 
         public $connexion;
 
@@ -72,7 +73,10 @@ class Persone
                         return $e->getMessage();
                 }
         }
-
+        public function updatePersone($id){
+                $stmt = $this->connexion->prepare("UPDATE users SET idproject=null  WHERE idproject=$id");
+                $stmt->execute();
+        }
         // protected function Logout()
         // {
         // }

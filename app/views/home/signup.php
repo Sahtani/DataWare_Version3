@@ -23,7 +23,6 @@
             </div>
         </form>
         <p class="text-red-500 text-center mb-2"><?php 
-            // die("test");
             echo $this->view_data["error"];
          ?></p>
     </div>

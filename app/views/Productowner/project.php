@@ -84,7 +84,7 @@
                     </div>
                 </form>
             </div>
-            <a href="./project" type="submit" name="submit" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-6 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+            <a href="../Project/loadproject" type="submit" name="submit" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-6 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
                 New project ...
             </a>
             <!-- cards -->
@@ -107,7 +107,7 @@
                             <?php echo $project['end_date'] ?>
                         </p>
                         <div class="flex items-center justify-center gap-10">
-                            <a href="updateprojet.php?update_id=<?= $project['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <a href="../Project/updateproject/<?= $project['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Update
                             </a>
                             <a href="deletproject.php?delete_id=<?= $project['idproject'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white  rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this project")'>
