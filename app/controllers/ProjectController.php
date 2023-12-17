@@ -72,6 +72,26 @@ class ProjectController extends Controller
             }
         }
     }
+    public function delete_project($id)
+    {
+        $this->model("project");
+        $result = $this->model->deleteproject($id);
+            redirect("Productowner/project");
+        }
+    public function update_persone($id)
+    {
+        $this->model("persone");
+        $updated_Persone = $this->model->updatePersone($id);
+
+        if ($updated_Persone) {
+            echo "Personne updated successfully.";
+        } else {
+            echo "Failed to update personne.";
+        }
+    }
+
+
+    
 
 
     

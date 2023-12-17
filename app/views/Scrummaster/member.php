@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>DataWare</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="title" content="Team and project management for DataWare">
     <meta name="keywords" content="team, project, Members, team management, project management">
@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inika&family=Inter:wght@100&family=Ruda&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
 
     <!-- js -->
     <script src="js/navbar.js"></script>
@@ -54,16 +53,16 @@
                     <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="./home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./team.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
@@ -72,7 +71,7 @@
         </div>
         <div class="w-4/5">
             <div class="rounded-lg mt-10 px-4 py-3 mr-4">
-                <form>
+                <form method="POST">
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -86,53 +85,51 @@
                     </div>
                 </form>
             </div>
+            <a href="./addmember.php" type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-6 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+                New member ...
+            </a>
             <!-- cards -->
-            <div class="grid grid-cols-3 grid-rows-2 gap-4 mt-7">
+            <div class="grid md:grid-cols-3 md:grid-rows-2 gap-4 mt-7 grid-cols-1">
                 <?php
                 foreach ($this->view_data["member"] as $arrayvalue) {
                 ?>
-                    <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white">
+                    <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white ">
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
-                                <?php echo $arrayvalue['firstname'] . " " . $arrayvalue['lastname'] ?>
+                                <?php echo $arrayvalue['firstname'] . " " . $arrayvalue['lastname']; ?>
                             </h5>
                         </a>
                         <p class="mb-3 font-normal text-dark">
-                            <?php echo $arrayvalue['email'] ?>
+                            <?php echo $arrayvalue['email']; ?>
                         </p>
                         <p class="mb-3 font-bold text-dark ">
                             <?php if ($arrayvalue['rol'] == 0) {
                                 echo 'user';
-                            } else if ($arrayvalue['rol'] == 2) {
-                                echo 'ScrumMaster';
                             }
                             ?>
                         </p>
-                        <div class="flex items-center justify-center gap-10">
+                        <div class="flex items-center justify-center gap-5">
                             <?php
-                            if ($arrayvalue['rol'] == 0) {
+                            if ($arrayvalue['idteam'] == null) {
                             ?>
-                                <a href="./updaterol/<?= $arrayvalue['iduser'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Update
+                                <a href="Addtoteam.php?iduser=<?php echo $arrayvalue['iduser'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Add to team
                                 </a>
                             <?php
-                            } else if ($arrayvalue['rol'] == 2) {
+                            } else {
                             ?>
-                                <a href="./loadassignproject/<?= $arrayvalue["iduser"] ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-deleted text-white bg-hoverd rounded-lg hover:bg-dark ">assign project</a>
+                                <a href="Removemember.php?iduser=<?= $arrayvalue["iduser"] ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-deleted text-white bg-hoverd rounded-lg hover:bg-dark " onclick="return confirm('Are you sure you want to delete this member?')">Remove a team member</a>
                             <?php } ?>
-
+                            <p></p>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
+
+                <?php } ?>
             </div>
         </div>
     </div>
-
-
-
-
+    </div>
+    </div>
 </body>
 
 </html>

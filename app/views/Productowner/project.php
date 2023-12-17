@@ -110,7 +110,7 @@
                             <a href="../Project/updateproject/<?= $project['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Update
                             </a>
-                            <a href="deletproject.php?delete_id=<?= $project['idproject'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white  rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this project")'>
+                            <a href="../Project/delete_project/<?= $project['idproject'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white  rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this project")'>
                                 Delete
                             </a>
                         </div>

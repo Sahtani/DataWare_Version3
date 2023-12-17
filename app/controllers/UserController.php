@@ -94,7 +94,8 @@ class UserController extends Controller
             }
             if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 1) {
                 redirect("Productowner/project");
-            }else{
+            } else  if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 2) {
+                redirect("Scrummaster/project"); 
 
             }
             // } else if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 2) {

@@ -1,3 +1,10 @@
+<?php
+$data = $this->view_data["team"];
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -5,9 +12,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="title" content="Team and project management for DataWare">
     <meta name="keywords" content="team, project, Members, team management, project management">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,48 +56,49 @@
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="./home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./team.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>
-        <div class="w-3/6 m-auto">
-            <form action="./Add_project" class=" m-auto bg-blueText2 w-full md:w-4/6 rounded-lg" method="post">
-                <div class="mb-5 mx-4">
-                    <label class="block p-4 text-sm font-medium  dark:text-white">Project name :</label>
-                    <input type="name" id="name" name="nameprojet" class="bg-white  border border-dark text-gray-500 text-sm rounded-lg w-full  p-2.5  " placeholder="project name" required>
-                </div>
-                <div class="mb-5 mx-4">
-                    <label class="block block px-2 pb-2 text-sm font-medium  dark:text-white">Start_date:</label>
-                    <input type="date" id="date" name="startdate" class="bg-white border border-dark text-sm rounded-lg w-full  p-2.5 text-gray-500 " placeholder="mm-dd-yyyy" required>
-                </div>
-                <div class="mb-5 mx-4">
-                    <label class="block px-2 pb-2 text-sm font-medium  dark:text-white">End_date:</label>
-                    <input type="date" id="date" name="enddate" class="bg-white border border-dark  text-sm rounded-lg w-full  p-2.5 text-gray-500 " placeholder="mm-dd-yyyy" required>
-                </div>
-                <div class="mx-4">
-                    <button type="submit" name="submit" class="text-white bg-dark hover:bg-blue-700 font-medium rounded-lg text-sm w-full mb-4  py-2.5 text-center">Submit</button>
-                    <p class="text-dark text-center pb-4"><?php
-                                                            echo $this->view_data["error"];
-                                                            ?></p>
-                </div>
-            </form>
+
+        <div class="border-2 border-dark bg-blueText2 md:m-auto h-fit md:w-1/2 grid grid-cols-1 md:grid mx-2 md:grid-cols-2 md:gap-10   rounded-lg mt-12">
+            <div class="flex items-center justify-center p-4">
+                <img class=" md:m-auto md:ml-4" src="<?= BASE_URL_ASSETS ?>img/undraw_engineering_team_a7n2.svg" alt="signup">
+            </div>
+            <div class="flex flex-col items-center   md:w-full mt-10  ">
+                <h1 class="text-2xl font-bold  text-center mt-3">Update Team</h1>
+                <form method="post" action="../update_team" class="flex flex-col mt-4 gap-4 w-full">
+                    <div class="mx-2">
+                        <input type="hidden" name="id" value='<?= $data['idteam'] ?>'>
+                        <input class="border-2 border-dark px-2 py-2   w-full  " type="text" id="name" name="name" required value='<?php echo $data['name']; ?>'>
+                    </div>
+                    <div class="mx-2">
+                        <input class="border-2 border-dark w-full px-2 py-2  " type="" id="datecreation" name="datecreation" required value='<?php echo  $data['datecreation']; ?>'>
+                    </div>
+
+                    <div class="mx-2">
+                        <button class="px-4 py-3 text-white w-full  bg-dark mb-5" name="submit" type="submit">Update</button>
+                    </div>
+                </form>
+                <p class="text-red-500 text-center mb-2"><?php echo $this->view_data["error"] ?></p>
+            </div>
+
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </body>
 
 </html>

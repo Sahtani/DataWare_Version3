@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>DataWare</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="title" content="Team and project management for DataWare">
     <meta name="keywords" content="team, project, Members, team management, project management">
@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inika&family=Inter:wght@100&family=Ruda&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
 
     <!-- js -->
     <script src="js/navbar.js"></script>
@@ -45,25 +44,24 @@
     </script>
 </head>
 
-<body class="">
+<body class="md:overflow-y-hidden">
     <div class="flex gap-4 mr-4">
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
-
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="./home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="../home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./project" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./loadteam" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./loadmember" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
@@ -79,7 +77,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Member..." required />
+                        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Project..." required />
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Search
                         </button>
@@ -87,39 +85,27 @@
                 </form>
             </div>
             <!-- cards -->
-            <div class="grid grid-cols-3 grid-rows-2 gap-4 mt-7">
+            <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 mt-7">
                 <?php
-                foreach ($this->view_data["member"] as $arrayvalue) {
+                foreach ($this->view_data["project"] as $arrayvalue) {
+
                 ?>
                     <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white">
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
-                                <?php echo $arrayvalue['firstname'] . " " . $arrayvalue['lastname'] ?>
+                                <?php echo $arrayvalue['name'] ?>
                             </h5>
                         </a>
                         <p class="mb-3 font-normal text-dark">
-                            <?php echo $arrayvalue['email'] ?>
+                            <?php echo $arrayvalue['start_date'] ?>
                         </p>
-                        <p class="mb-3 font-bold text-dark ">
-                            <?php if ($arrayvalue['rol'] == 0) {
-                                echo 'user';
-                            } else if ($arrayvalue['rol'] == 2) {
-                                echo 'ScrumMaster';
-                            }
-                            ?>
+                        <p class="mb-3 font-normal text-dark">
+                            <?php echo $arrayvalue['end_date'] ?>
                         </p>
                         <div class="flex items-center justify-center gap-10">
-                            <?php
-                            if ($arrayvalue['rol'] == 0) {
-                            ?>
-                                <a href="./updaterol/<?= $arrayvalue['iduser'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Update
-                                </a>
-                            <?php
-                            } else if ($arrayvalue['rol'] == 2) {
-                            ?>
-                                <a href="./loadassignproject/<?= $arrayvalue["iduser"] ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-deleted text-white bg-hoverd rounded-lg hover:bg-dark ">assign project</a>
-                            <?php } ?>
+                            <a href="assign.php?projectid=<?= $arrayvalue['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                assign projects to teams
+                            </a>
 
                         </div>
                     </div>
@@ -129,10 +115,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 </body>
 
 </html>

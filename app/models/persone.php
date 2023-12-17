@@ -27,7 +27,7 @@ class Persone
                         $stmt->bindParam("lastname", $data["l_name"]);
                         $stmt->bindParam("email", $data["email"]);
                         $stmt->bindParam("password", $data["password"]); 
-                        $stmt->execute();
+                        return  $stmt->execute();
                        
                 } catch (PDOException $e) {
                         return $e->getMessage();
@@ -39,7 +39,7 @@ class Persone
                 try {
                         $stmt = $this->connexion->prepare("SELECT * FROM users");
                         if ($stmt->execute()) {
-                                return $stmt->fetchAll();
+                                return $this->$data=$stmt->fetchAll();
                         }
                 } catch (PDOException $e) {
                         return $e->getMessage();
@@ -74,7 +74,8 @@ class Persone
                 }
         }
         public function updatePersone($id){
-                $stmt = $this->connexion->prepare("UPDATE users SET idproject=null  WHERE idproject=$id");
+                $stmt = $this->connexion->prepare("UPDATE users SET idproject= null  WHERE idproject=:id");
+                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
         }
         // protected function Logout()

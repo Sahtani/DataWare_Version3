@@ -12,6 +12,9 @@
             $stmt->bindParam(":start_date", $projects["s_date"]);
             $stmt->bindParam(":end_date", $projects["e_date"]);
             $stmt->execute();
+            if($stmt->execute()){
+                return true;
+            }
         }
         public function getproject($id)
         {
@@ -32,10 +35,21 @@
                 $stmt->bindParam("start_date", $projects["s_date"]);
                 $stmt->bindParam("end_date", $projects["e_date"]);
                 $stmt->bindParam("id", $projects["id"]);
-              if($stmt->execute()){
-                return true;
-              }else{ return false;}
-
+                if ($stmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                return $e->getMessage();
+            }
+        }
+        public function deleteproject($id)
+        {
+            try {
+                $stmt = $this->connect()->prepare("DELETE FROM project WHERE idproject =:id");
+                $stmt->bindParam(":id", $id );
+                $stmt->execute();
             } catch (PDOException $e) {
                 return $e->getMessage();
             }

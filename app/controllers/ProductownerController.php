@@ -50,4 +50,37 @@ class ProductownerController extends Controller
         $member = $this->model->getmembers();
         return $member;
     }
+    // updaterol member
+    public function loadupdaterol($error){
+        $this->view("Productowner/updaterol", "", ["error" => $error]);
+        $this->view->render();
+    }
+    public function updaterol($updaterol){
+        $this->model("productowner");
+        $member_rol=$this->model->updaterol($updaterol);
+        if ($member_rol) {
+           $this->loadupdaterol("");
+        } else {
+            $this->loadupdaterol("Failed to update rol.");
+        }
+
+    }
+
+    public function loadAssignProject($id, $error = "")
+    {
+        $project = $this->displayProject($id);
+        $this->view("Productowner/assignproject", "", ["error" => $error, "project" => $project]);
+        $this->view->render();
+    }
+
+    public function assign_Project($newProject, $idUser)
+    {
+        $this->model("productowner");
+        $assignProject = $this->model->assignProject($newProject, $idUser);
+        if ($assignProject) {
+            $this->loadAssignProject($idUser,"Project assigned successfully!");
+        } else {
+            $this->loadAssignProject($idUser, "Failed to assign project.");
+        }
+    }
 }

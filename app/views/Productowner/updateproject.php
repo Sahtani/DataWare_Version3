@@ -54,19 +54,19 @@ $project = $this->view_data["project"];
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="./home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./teams.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
@@ -90,7 +90,7 @@ $project = $this->view_data["project"];
                 </div>
                 <div class="mx-4">
                     <button type="submit" name="submit" class="text-white bg-dark hover:bg-blue-700 font-medium rounded-lg text-sm w-full mb-4  py-2.5 text-center">Submit</button>
-                    <p class="text-dark text-center pb-4"><?php echo $this->view_data["error"]?></p>
+                    <p class="text-dark text-center pb-4"><?php echo $this->view_data["error"] ?></p>
                 </div>
             </form>
         </div>
