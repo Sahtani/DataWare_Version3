@@ -16,8 +16,6 @@ class UserController extends Controller
         $this->view("home/signup", "", ["error" => $error]);
         $this->view->render();
     }
-
-
     public function Usersignup()
     {
         if (isset($_POST["submit"])) {
@@ -40,11 +38,10 @@ class UserController extends Controller
             if ($existed_Persone) {
                 $this->sign_up("This Email Already Exist!");
                 exit;
-            }else $this->sign_up("Sign-up successful!");
+            } else $this->sign_up("Sign-up successful!");
 
             // Sign up the user
             $this->model->Signup($data);
-
         }
     }
     public function validateData($data, $dataType)
@@ -95,19 +92,20 @@ class UserController extends Controller
             if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 1) {
                 redirect("Productowner/project");
             } else  if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 2) {
-                redirect("Scrummaster/project"); 
-
+                redirect("Scrummaster/project");
+            } else if (isset($_SESSION['data']['rol']) && $_SESSION['data']['rol'] == 3) {
+                redirect('member/projectliste');
             }
-            // } else if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 2) {
-            //     header('location:./ScrumMaster/projet.php');
-            // } else if (isset($_SESSION['data'][0]['rol']) && $_SESSION['data'][0]['rol'] == 3) {
-            //     header('location:./Membre/projectliste.php');
-            // } else {
-            //     header('location:index.php');
-            // }
         } else {
             header("Location: http://localhost/DataWare_Version3//public/home/");
         }
     }
 
+    // logout user
+    public function logout()
+    {
+        if (session_destroy()) {
+            redirect("home/");
+        }
+    }
 }

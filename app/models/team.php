@@ -36,4 +36,9 @@ class team extends Db
             return true;
         }
     }
+    public function deleteteam($idteam){
+        $stmt = $this->connect()->prepare("DELETE FROM team WHERE idteam =:idteam");
+        $stmt->bindParam(":idteam",$idteam);
+        $stmt->execute();
+}
 }

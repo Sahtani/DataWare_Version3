@@ -107,10 +107,10 @@
                             <?= $arrayvalue['name'] ?>
                         </p>
                         <div class="flex items-center justify-center gap-10">
-                            <a href="<?= BASE_URL?>public/Team/updateteam/<?php echo $arrayvalue['idteam'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <a href="<?= BASE_URL ?>public/Team/updateteam/<?php echo $arrayvalue['idteam'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Update
                             </a>
-                            <a href="deletteam.php?idteam=<?php echo $arrayvalue['idteam'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this team")'>
+                            <a href="<?= BASE_URL ?>public/Team/delete_team/<?php echo $arrayvalue['idteam'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this team")'>
                                 Delete
                             </a>
                         </div>

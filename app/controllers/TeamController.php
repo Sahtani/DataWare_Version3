@@ -57,15 +57,19 @@ class TeamController extends Controller
 
             $this->model("team");
             $updateteam = $this->model->updateteam($teams);
-            //   die($updateteam);
             if ($updateteam) {
              
-                redirect("Productowner/team");
+                redirect("Scrummaster/team");
                 exit;
             } else {
                 $this->updateteam($id, "Failed to update team.");
             }
         }
+    }
+    public function delete_team($idteam){
+        $this->model("team");
+        $result = $this->model->deleteteam($idteam);
+        redirect("Scrummaster/team");
     }
 
 

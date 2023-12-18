@@ -6,7 +6,7 @@ class Persone
         protected string $Last_Name;
         protected string $email;
         protected string $password;
-        protected int $rold;
+        protected int $rol;
         protected $data;
 
         public $connexion;

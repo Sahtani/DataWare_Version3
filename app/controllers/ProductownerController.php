@@ -19,7 +19,6 @@ class ProductownerController extends Controller
         return $project;
     }
     // team
-    
     public function loadteam($error = "")
     {
         $this->view("Productowner/team", "", ["error" => $error]);
@@ -65,14 +64,12 @@ class ProductownerController extends Controller
         }
 
     }
-
     public function loadAssignProject($id, $error = "")
     {
         $project = $this->displayProject($id);
         $this->view("Productowner/assignproject", "", ["error" => $error, "project" => $project]);
         $this->view->render();
     }
-
     public function assign_Project($newProject, $idUser)
     {
         $this->model("productowner");

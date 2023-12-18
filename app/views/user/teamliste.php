@@ -49,22 +49,19 @@
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="./home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projectliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./teamliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
-                </li>
-                <li>
-                    <a href="../logout" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
+                    <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>
@@ -84,38 +81,33 @@
                     </div>
                 </form>
             </div>
-            <a href="../Project/loadproject" type="submit" name="submit" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-6 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
-                New project ...
-            </a>
             <!-- cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 mt-7">
                 <?php
-                foreach ($this->view_data["project"] as $project) {
-
+                if ($affectedRows > 0) {
+                    foreach ($data as $arrayvalue) {
                 ?>
+                        <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white">
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
+                                    <?php echo $arrayvalue['name'] ?>
+                                </h5>
+                            </a>
+                            <p class="mb-3 font-normal text-dark">
+                                <?php echo $arrayvalue['start_date'] ?>
+                            </p>
+                            <p class="mb-3 font-normal text-dark">
+                                <?php echo $arrayvalue['end_date'] ?>
+                            </p>
+                            <div class="flex items-center justify-center gap-10">
 
-                    <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
-                                <?php echo $project['name'] ?>
-                            </h5>
-                        </a>
-                        <p class="mb-3 font-normal text-dark">
-                            <?php echo $project['start_date'] ?>
-                        </p>
-                        <p class="mb-3 font-normal text-dark">
-                            <?php echo $project['end_date'] ?>
-                        </p>
-                        <div class="flex items-center justify-center gap-10">
-                            <a href="../Project/updateproject/<?= $project['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Update
-                            </a>
-                            <a href="../Project/delete_project/<?= $project['idproject'] ?>" class="px-6 py-2 text-sm font-medium text-center text-white  rounded-lg bg-deleted hover:hoverd" onclick='return confirm("Are you sure you want to delete this project")'>
-                                Delete
-                            </a>
+
+                            </div>
                         </div>
-                    </div>
                 <?php
+                    }
+                } else {
+                    echo '<p class="text-dark font-bold text-xl">No projects<p>';
                 }
                 ?>
             </div>
