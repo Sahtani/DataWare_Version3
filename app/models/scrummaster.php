@@ -43,6 +43,23 @@
                 return $e->getMessage();
             }
         }
+        public function addtoteam($newTeam, $iduser){
+            $stmt = $this->connexion->prepare("UPDATE users SET idteam = :newTeam ,rol=3 WHERE iduser = :iduser");
+            $stmt->bindParam(":newTeam", $newTeam);
+            $stmt->bindParam(":iduser", $iduser);
+            if($stmt->execute()){
+                return true;
+            }
+        }
+        public function Removemember($iduser){
+            $stmt = $this->connexion->prepare("UPDATE users SET idteam =null WHERE iduser = :iduser");
+            $stmt->bindParam(':iduser',$iduser);
+            if($stmt->execute()){
+                return true;
+            }
+
+
+        }
     }
 ?>
 

@@ -26,7 +26,7 @@ class Persone
                         $stmt->bindParam("firstname", $data["f_name"]);
                         $stmt->bindParam("lastname", $data["l_name"]);
                         $stmt->bindParam("email", $data["email"]);
-                        $stmt->bindParam("password", $data["password"]); 
+                        $stmt->bindParam("password", $data["password"]);
                         return  $stmt->execute();
                        
                 } catch (PDOException $e) {

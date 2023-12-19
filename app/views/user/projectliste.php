@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -53,13 +52,13 @@
                     <img src="../image/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./projectliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projectliste" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./teamliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./teamliste" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>

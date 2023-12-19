@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inika&family=Inter:wght@100&family=Ruda&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+
     <!-- js -->
     <script src="js/navbar.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,9 +45,10 @@
     </script>
 </head>
 
-<body class="md:overflow-y-hidden">
+<body class="overflow-y-hidden">
     <div class="flex gap-4 mr-4">
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
+
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
                     <img src="../image/testlogo.png" alt="logo.png" class="w-full">
@@ -54,10 +57,13 @@
                     <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./projectliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./teamliste.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./team.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                </li>
+                <li>
+                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
                     <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
@@ -73,36 +79,28 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Project..." required />
+                        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Member..." required />
                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Search
                         </button>
                     </div>
                 </form>
             </div>
-            <!-- cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 mt-7">
-                 <?php if ($this->view_data["team"] > 0) {
-                    foreach ($this->view_data["team"] as $arrayvalue) {
-                ?>
-                        <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white">
-                            <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
-                                    <?php echo $arrayvalue['name'] ?>
-                                </h5>
-                            </a>
-                            <p class="mb-3 font-normal text-dark">
-                                <?php echo $arrayvalue['datecreation'] ?>
-                            </p>
-                        </div>
-                <?php
-                    }
-                } else {
-                    echo '<p class="text-dark font-bold text-xl">No teams<p>';
-                }
-                ?>
-            </div>
+
+            <form method="post" action="">
+                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                <select id="countries" name="team" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option disabled selected>Choose a team name</option>
+                    <?php foreach ($teams as $team) : ?>
+                        <option value="<?php echo $team['idteam']; ?>"><?php echo $team['name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">submit</button>
+            </form>
+
         </div>
+
+    </div>
     </div>
 </body>
 

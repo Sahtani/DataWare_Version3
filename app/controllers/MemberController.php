@@ -20,4 +20,28 @@ class MemberController extends Controller
         $project = $this->model->getprojects($iduser);
         return $project;
     }
+    public function loadteam($error = "")
+    {
+        $this->teamliste();
+    }
+    public function teamliste($error = "")
+    {
+        $iduser = $_SESSION['data']['rol'];
+        $this->view("user/teamliste", "", ["team" => $this->displayteam($iduser)]);
+        $this->view->render();
+    }
+    public function displayteam($iduser)
+    {
+        $this->model("user");
+        $team = $this->model->getteams($iduser);
+        if ($team === false) {
+            return false;
+        }
+        print_r($team);
+      
+
+        return $team;
+
+      
+}
 }

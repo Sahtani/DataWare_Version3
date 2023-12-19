@@ -19,10 +19,10 @@ class User extends Persone
         $stmt = $this->connexion->prepare("SELECT team.idteam,team.name,team.datecreation FROM team
             INNER JOIN users ON users.idteam = team.idteam WHERE users.iduser =$iduser AND users.rol = 3");
         $stmt->execute();
-        $stmt->fetchAll();
-        $data = $stmt->rowCount();
-        if ($data > 0) {
+        $data=$stmt->fetchAll();
+        if ($data) {
             return $data;
+            
         }
     }
 }
