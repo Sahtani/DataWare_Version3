@@ -66,7 +66,7 @@
                     <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
+                    <a href="<?= BASE_URL ?>public/User/logout" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>

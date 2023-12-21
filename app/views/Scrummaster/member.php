@@ -53,19 +53,19 @@
                     <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="../home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./project" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./loadteam" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./loadmember" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
+                    <a href="<?= BASE_URL ?>public/User/logout" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>
@@ -90,41 +90,44 @@
             </a>
             <!-- cards -->
             <div class="grid md:grid-cols-3 md:grid-rows-2 gap-4 mt-7 grid-cols-1">
-                <?php
-                foreach ($this->view_data["member"] as $arrayvalue) {
+                <?php if ($this->view_data["member"] != null) {
+                    foreach ($this->view_data["member"] as $arrayvalue) {
                 ?>
-                    <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white ">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
-                                <?php echo $arrayvalue['firstname'] . " " . $arrayvalue['lastname']; ?>
-                            </h5>
-                        </a>
-                        <p class="mb-3 font-normal text-dark">
-                            <?php echo $arrayvalue['email']; ?>
-                        </p>
-                        <p class="mb-3 font-bold text-dark ">
-                            <?php if ($arrayvalue['rol'] == 0) {
-                                echo 'user';
-                            }
-                            ?>
-                        </p>
-                        <div class="flex items-center justify-center gap-5">
-                            <?php
-                            if ($arrayvalue['idteam'] == null) {
-                            ?>
-                                <a href="Addtoteam.php?iduser=<?php echo $arrayvalue['iduser'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Add to team
-                                </a>
-                            <?php
-                            } else {
-                            ?>
-                                <a href="Removemember.php?iduser=<?= $arrayvalue["iduser"] ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-deleted text-white bg-hoverd rounded-lg hover:bg-dark " onclick="return confirm('Are you sure you want to delete this member?')">Remove a team member</a>
-                            <?php } ?>
-                            <p></p>
+                        <div class="mt-2 p-6 border rounded-lg shadow dark:bg-white ">
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-dark">
+                                    <?php echo $arrayvalue['firstname'] . " " . $arrayvalue['lastname']; ?>
+                                </h5>
+                            </a>
+                            <p class="mb-3 font-normal text-dark">
+                                <?php echo $arrayvalue['email']; ?>
+                            </p>
+                            <p class="mb-3 font-bold text-dark ">
+                                <?php if ($arrayvalue['rol'] == 0) {
+                                    echo 'user';
+                                }
+                                ?>
+                            </p>
+                            <div class="flex items-center justify-center gap-5">
+                                <?php
+                                if ($arrayvalue['idteam'] == null) {
+                                ?>
+                                    <a href="<?= BASE_URL ?>public/Scrummaster/AddToTeam/<?php echo $arrayvalue['iduser'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Add to team
+                                    </a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="<?= BASE_URL ?>public/Scrummaster/Removemember/<?= $arrayvalue["iduser"] ?>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-deleted text-white bg-hoverd rounded-lg hover:bg-dark " onclick="return confirm('Are you sure you want to delete this member?')">Remove a team member</a>
+                                <?php } ?>
+                                <p></p>
+                            </div>
                         </div>
-                    </div>
 
-                <?php } ?>
+                <?php }
+                } else echo '<p class="text-dark font-bold text-xl">No users</p>';
+                ?>
+
             </div>
         </div>
     </div>

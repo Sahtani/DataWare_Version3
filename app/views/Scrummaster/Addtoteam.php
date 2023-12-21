@@ -51,28 +51,29 @@
 
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
-                    <a href="../index.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
+                    <a href="" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./projet.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="./projet" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
-                    <a href="./team.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
+                    <a href="./team" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
                 </li>
                 <li>
-                    <a href="./member.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
+                    <a href="./member" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
+                    <a href="<?= BASE_URL ?>public/User/logout" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>
         <div class="w-4/5">
             <div class="rounded-lg mt-10 px-4 py-3 mr-4">
                 <form>
+
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -87,15 +88,20 @@
                 </form>
             </div>
 
-            <form method="post" action="">
+            <form method="post" action="../add_toteam">
+
                 <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                 <select id="countries" name="team" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option disabled selected>Choose a team name</option>
-                    <?php foreach ($teams as $team) : ?>
-                        <option value="<?php echo $team['idteam']; ?>"><?php echo $team['name']; ?></option>
+                    <?php
+                    foreach ($this->view_data["team"] as $team) : ?>
+                        <option value="<?php echo $team['idteam']; ?>"><?php echo $team['team_name']; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">submit</button>
+                <input type="hidden" name="id" value='<?= $this->view_data["iduser"] ?>'>
+
+
             </form>
 
         </div>

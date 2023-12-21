@@ -33,7 +33,7 @@
         public function getmembers()
         {
             try {
-                $stmt = $this->connexion->prepare("SELECT * FROM users where rol=0");
+                $stmt = $this->connexion->prepare("SELECT * FROM users where rol in (0,3)");
                 $stmt->execute();
                 $data = $stmt->fetchAll();
                 if (count($data) > 0) {
@@ -43,24 +43,30 @@
                 return $e->getMessage();
             }
         }
-        public function addtoteam($newTeam, $iduser){
+        public function addtoteam($newTeam, $iduser)
+        {
             $stmt = $this->connexion->prepare("UPDATE users SET idteam = :newTeam ,rol=3 WHERE iduser = :iduser");
             $stmt->bindParam(":newTeam", $newTeam);
             $stmt->bindParam(":iduser", $iduser);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;
             }
         }
-        public function Removemember($iduser){
+        public function Removemember($iduser)
+        {
             $stmt = $this->connexion->prepare("UPDATE users SET idteam =null WHERE iduser = :iduser");
-            $stmt->bindParam(':iduser',$iduser);
-            if($stmt->execute()){
+            $stmt->bindParam(':iduser', $iduser);
+            if ($stmt->execute()) {
                 return true;
             }
-
-
+        }
+        public function Assignproject($idproject, $newTeam)
+        {
+            $stmt = $this->connexion->prepare("UPDATE project SET idteam = :newTeam WHERE idproject = :projectid");
+            $stmt->bindParam(":newTeam", $newTeam);
+            $stmt->bindParam(":projectid", $idproject);
+            if ($stmt->execute()) {
+                return true;
+            }
         }
     }
-?>
-
-

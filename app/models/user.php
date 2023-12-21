@@ -8,9 +8,8 @@ class User extends Persone
     {
         $stmt = $this->connexion->prepare("SELECT project.idproject,project.name,project.start_date,project.end_date FROM project INNER JOIN team ON project.idteam = team.idteam  INNER JOIN users ON team.idteam=users.idteam WHERE users.iduser =$iduser AND users.rol = 3");
         $stmt->execute();
-        $stmt->fetchAll();
-        $data = $stmt->rowCount();
-        if ($data > 0) {
+       $data = $stmt->fetchAll();
+        if ($data) {
             return $data;
         }
     }

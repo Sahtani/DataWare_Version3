@@ -104,8 +104,9 @@ class UserController extends Controller
     // logout user
     public function logout()
     {
-        if (session_destroy()) {
-            redirect("home/");
-        }
-    }
+
+if (session_destroy()) {
+    redirect('user/log_in');
 }
+
+}}

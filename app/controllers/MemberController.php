@@ -10,7 +10,7 @@ class MemberController extends Controller
     }
     public function projectliste($error = "")
     {
-        $iduser=$_SESSION['data']['rol'];
+        $iduser=$_SESSION['data']['iduser'];
         $this->view("user/projectliste", "", ["project" => $this->displayproject($iduser)]);
         $this->view->render();
     }
@@ -26,7 +26,7 @@ class MemberController extends Controller
     }
     public function teamliste($error = "")
     {
-        $iduser = $_SESSION['data']['rol'];
+        $iduser = $_SESSION['data']['iduser'];
         $this->view("user/teamliste", "", ["team" => $this->displayteam($iduser)]);
         $this->view->render();
     }
@@ -37,9 +37,6 @@ class MemberController extends Controller
         if ($team === false) {
             return false;
         }
-        print_r($team);
-      
-
         return $team;
 
       

@@ -9,8 +9,12 @@ class ProductownerController extends Controller
     }
     public function project()
     {
-        $this->view("Productowner/project", "", ["project" => $this->displayproject()]);
-        $this->view->render();
+        if (isUserLogged()) {
+            $this->view("Productowner/project", "", ["project" => $this->displayproject()]);
+            $this->view->render();
+        }else{ 
+            redirect('user/log_in');
+        }
     }
     public function displayproject()
     {
@@ -36,33 +40,37 @@ class ProductownerController extends Controller
         return $team;
     }
     // member
-    public function loadmember($error=""){
+    public function loadmember($error = "")
+    {
         $this->view("Productowner/member", "", ["error" => $error]);
         $this->view->render();
     }
-    public function member(){
+    public function member()
+    {
         $this->view("Productowner/member", "", ["member" => $this->displaymember()]);
         $this->view->render();
     }
-    public function displaymember(){
+    public function displaymember()
+    {
         $this->model("productowner");
         $member = $this->model->getmembers();
         return $member;
     }
     // updaterol member
-    public function loadupdaterol($error){
+    public function loadupdaterol($error)
+    {
         $this->view("Productowner/updaterol", "", ["error" => $error]);
         $this->view->render();
     }
-    public function updaterol($updaterol){
+    public function updaterol($updaterol)
+    {
         $this->model("productowner");
-        $member_rol=$this->model->updaterol($updaterol);
+        $member_rol = $this->model->updaterol($updaterol);
         if ($member_rol) {
-           $this->loadupdaterol("");
+            $this->loadupdaterol("");
         } else {
             $this->loadupdaterol("Failed to update rol.");
         }
-
     }
     public function loadAssignProject($id, $error = "")
     {
@@ -75,7 +83,7 @@ class ProductownerController extends Controller
         $this->model("productowner");
         $assignProject = $this->model->assignProject($newProject, $idUser);
         if ($assignProject) {
-            $this->loadAssignProject($idUser,"Project assigned successfully!");
+            $this->loadAssignProject($idUser, "Project assigned successfully!");
         } else {
             $this->loadAssignProject($idUser, "Failed to assign project.");
         }

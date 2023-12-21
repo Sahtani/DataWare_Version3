@@ -49,13 +49,13 @@
         <div class="h-screen w-1/6 bg-white border-r shadow-md md:bg-dark">
             <ul class="space-y-4 text-lg sidebar bg-dark text-white mt-5">
                 <div class="flex items-center justify-center">
-                    <img src="../image/testlogo.png" alt="logo.png" class="w-full">
+                    <img src="<?= BASE_URL_ASSETS ?>img/testlogo.png" alt="logo.png" class="w-full">
                 </div>
                 <li>
                     <a href="../home" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Home</a>
                 </li>
                 <li>
-                    <a href="./project" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
+                    <a href="<?= BASE_URL ?>public/Scrummaster/project" class="block py-2 px-4 hover:bg-btn hover:text-dark text-2xl">Projects</a>
                 </li>
                 <li>
                     <a href="./loadteam" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Teams</a>
@@ -64,7 +64,7 @@
                     <a href="./loadmember" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Members</a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
+                    <a href="<?= BASE_URL ?>public/User/logout" class="block py-2 px-4 hover:bg-btn hover:text-dark text-xl">Log out</a>
                 </li>
             </ul>
         </div>
@@ -103,9 +103,14 @@
                             <?php echo $arrayvalue['end_date'] ?>
                         </p>
                         <div class="flex items-center justify-center gap-10">
-                            <a href="assign.php?projectid=<?= $arrayvalue['idproject'] ?>" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <?php
+                            if ($arrayvalue['idteam'] == null) {
+                                echo '<a href="' . BASE_URL . 'public/Scrummaster/assignproject/' . $arrayvalue['idproject'] . '" class="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-dark dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 assign projects to teams
-                            </a>
+                                </a>';
+                                                        }
+                            ?>
+
 
                         </div>
                     </div>

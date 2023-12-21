@@ -11,7 +11,7 @@ define('MODEL', ROOT . 'app' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARA
 define('VIEW', ROOT . 'app' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 
 
-// define('SESSION_HELPER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'session_helper.php');
+define('SESSION_HELPER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'session_helpers.php');
 
 
 
@@ -23,6 +23,8 @@ define('BASE_URL_ASSETS', 'http://localhost/DataWare_Version3/public/assets/');
 
 $modules = [ROOT, APP, CORE, CONTROLLER, DATA, MODEL];
 require_once URL_HELPER;
+require_once SESSION_HELPER;
+// 
 set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, $modules));
 spl_autoload_register('spl_autoload');
 new App();
